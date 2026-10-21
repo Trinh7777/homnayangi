@@ -1,0 +1,52 @@
+/* ===== DẢI QUAY NGANG ===== */
+.reel-wrap { position: relative; }
+.reel-frame {
+  position: relative;
+  padding: 26px 0;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 10px, transparent 10px 20px),
+    linear-gradient(180deg, #0c1018, #121826 50%, #0c1018);
+  border-top: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  border-bottom: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow:
+    0 0 40px color-mix(in srgb, var(--accent) 18%, transparent),
+    inset 0 0 60px #000c;
+  transition: border-color .5s, box-shadow .5s;
+}
+body[data-mode="mystery"] .reel-frame { animation: frame-glow 1.6s infinite alternate; }
+@keyframes frame-glow { to { box-shadow: 0 0 70px color-mix(in srgb, var(--accent) 45%, transparent), inset 0 0 60px #000c; } }
+
+/* Góc khung kiểu HUD */
+.corner { position: absolute; width: 22px; height: 22px; border: 3px solid var(--accent); z-index: 5; }
+.corner.tl { top: -2px; left: 0; border-right: 0; border-bottom: 0; }
+.corner.tr { top: -2px; right: 0; border-left: 0; border-bottom: 0; }
+.corner.bl { bottom: -2px; left: 0; border-right: 0; border-top: 0; }
+.corner.br { bottom: -2px; right: 0; border-left: 0; border-top: 0; }
+
+.reel-viewport { position: relative; overflow: hidden; height: calc(var(--card-h) + 24px); display: flex; align-items: center; }
+.reel-track {
+  display: flex; gap: var(--card-gap);
+  padding: 0 var(--card-gap);
+  will-change: transform;
+}
+
+.reel-fade { position: absolute; top: 0; bottom: 0; width: 18%; z-index: 3; pointer-events: none; }
+.reel-fade.left { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.reel-fade.right { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+
+/* Kim chỉ ở giữa */
+.reel-pointer {
+  position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; z-index: 4; pointer-events: none;
+}
+.reel-pointer .line {
+  flex: 1; width: 3px;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  box-shadow: 0 0 10px var(--accent), 0 0 24px var(--accent);
+}
+.reel-pointer .arrow { width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; filter: drop-shadow(0 0 6px var(--accent)); }
+.reel-pointer .arrow.top { border-top: 18px solid var(--accent); margin-top: -2px; }
+.reel-pointer .arrow.bottom { border-bottom: 18px solid var(--accent); margin-bottom: -2px; }
+
+.reel-frame.spinning .reel-pointer .line { animation: pointer-blink .15s infinite alternate; }
+@keyframes pointer-blink { to { opacity: .55; } }

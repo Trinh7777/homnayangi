@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hôm Nay Ăn Gì? – Vòng Quay Ẩm Thực</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/reel.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+</head>
+<body data-mode="normal">
+  <div class="bg-layer"></div>
+
+  {% include "partials/header.html" %}
+
+  <main class="stage" id="stage">
+    <section class="banner">
+      <div class="banner-tag" id="mode-tag">GACHA ẨM THỰC</div>
+      <h1 class="mode-title" id="mode-title">Vòng Quay Ẩm Thực</h1>
+      <p class="mode-sub" id="mode-sub"></p>
+    </section>
+
+    {% include "partials/reel.html" %}
+
+    <section class="controls">
+      <button id="btn-spin" class="btn-main">
+        <span class="btn-main-text">QUAY NGAY</span>
+        <span class="btn-main-hint">Phím Space</span>
+      </button>
+      <button id="btn-open-box" class="btn-main btn-mystery hidden">
+        <span class="btn-main-text">🎁 MỞ HỘP QUÀ <span class="box-count" id="box-count">0</span></span>
+        <span class="btn-main-hint">Có cơ hội nhận Lẩu</span>
+      </button>
+      <button id="btn-back" class="btn-ghost hidden">← Về vòng quay thường</button>
+    </section>
+
+    <div class="panels">
+      <section class="panel">
+        <h3 class="panel-title">Phần thưởng</h3>
+        <div class="showcase" id="showcase"></div>
+      </section>
+      <section class="panel">
+        <h3 class="panel-title">Lịch sử <button class="link-btn" id="btn-clear-history">Xoá</button></h3>
+        <ul class="history" id="history"></ul>
+      </section>
+    </div>
+  </main>
+
+  {% include "partials/result_modal.html" %}
+  {% include "partials/rates_modal.html" %}
+
+  <canvas id="fx-canvas"></canvas>
+  <div id="flash"></div>
+  <div id="toast" class="toast"></div>
+
+  <script id="game-data" type="application/json">{{ game_data | tojson }}</script>
+  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div id="rates-modal" class="modal rates-modal hidden" aria-hidden="true">
+  <div class="rates-box">
+    <button class="modal-close" data-close>✕</button>
+    <h2 class="rates-title">TỈ LỆ RƠI VẬT PHẨM</h2>
+    {% for table in rates %}
+    <div class="rates-table">
+      <h4>{{ table.name }}</h4>
+      {% for row in table.rows %}
+      <div class="rates-row" style="--rc: {{ row.rarity.color }}">
+        <span class="rates-emoji">{{ row.item.emoji }}</span>
+        <span class="rates-name">{{ row.item.name }}</span>
+        <span class="rates-rarity">{{ row.rarity.name }}</span>
+        <span class="rates-price">{{ row.item.price_text }}</span>
+        <span class="rates-percent">{{ row.percent }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <p class="rates-note">* Vòng quay thường: tỉ lệ đều. Hộp Quà Bí Ẩn: tỉ lệ theo phẩm chất.</p>
+  </div>
+</div>
