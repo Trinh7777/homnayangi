@@ -35,12 +35,21 @@ static/
   img/  ảnh món ăn
 ```
 
-## Tỉ lệ
+## Danh sách món & Phẩm chất
 
-| Vòng quay | Bánh Mì 🟢 | Bún Chả 🔵 | Bún Bò 🟣 | Cơm Tấm 🔴 | Hộp Quà 🎁 | Lẩu 🟡 |
-|---|---|---|---|---|---|---|
-| Thường (đều) | 20% | 20% | 20% | 20% | 20% | – |
-| Hộp quà bí ẩn (theo phẩm chất) | 40% | 28% | 18% | 10% | – | 4% |
+| Món ăn | Giá | Phẩm chất | Màu |
+|---|---|---|---|
+| **Nhịn Ăn** | 0đ | Tiết Kiệm | Xám ⚪ |
+| **Tự Nấu Cơm** | 0đ | Tiết Kiệm | Xám ⚪ |
+| **Bánh Mì** | 20.000đ | Phổ Thông | Xanh lá 🟢 |
+| **Bánh Bao** | 25.000đ | Phổ Thông | Xanh lá 🟢 |
+| **Cháo Lòng** | 30.000đ | Hiếm | Xanh dương 🔵 |
+| **Bún Chả** | 35.000đ | Hiếm | Xanh dương 🔵 |
+| **Phở Cuốn** | 35.000đ | Sử Thi | Tím 🟣 |
+| **Bún Bò** | 40.000đ | Sử Thi | Tím 🟣 |
+| **Cơm Tấm** | 45.000đ | Huyền Thoại | Đỏ 🔴 |
+| **Lẩu** | 100.000đ | Thần Thoại | Vàng 🟡 *(Chỉ có trong Hộp Quà Bí Ẩn)* |
+| **Hộp Quà Bí Ẩn** | ??? | Bí Ẩn | Cam 🎁 |
 
 Đổi tỉ lệ ở `rarity_weights` trong `data/items.py`.
 

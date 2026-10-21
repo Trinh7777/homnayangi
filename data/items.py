@@ -10,6 +10,7 @@ Muốn thêm món mới:
 # PHẨM CHẤT (tier càng cao càng hiếm, hiệu ứng nổ càng hoành tráng)
 # ---------------------------------------------------------------------------
 RARITIES = {
+    "gray":    {"name": "Tiết Kiệm",   "color": "#94a3b8", "tier": 1, "stars": 1},
     "green":   {"name": "Phổ Thông",   "color": "#3ddc6a", "tier": 1, "stars": 1},
     "blue":    {"name": "Hiếm",        "color": "#3b9bff", "tier": 2, "stars": 2},
     "purple":  {"name": "Sử Thi",      "color": "#b45cff", "tier": 3, "stars": 3},
@@ -24,15 +25,40 @@ RARITIES = {
 #   action: hành động đặc biệt khi quay trúng
 # ---------------------------------------------------------------------------
 ITEMS = {
+    "nhin": {
+        "name": "Nhịn Ăn", "price": 0, "rarity": "gray",
+        "image": "img/nhin.jpg", "emoji": "🫗",
+        "desc": "Thắt lưng buộc bụng! Uống cốc nước lọc rồi ngủ một giấc cho khoẻ.",
+    },
+    "tu_nau_com": {
+        "name": "Tự Nấu Cơm", "price": 0, "rarity": "gray",
+        "image": "img/tu_nau_com.jpg", "emoji": "🍳",
+        "desc": "Mở tủ lạnh xem có gì nấu nấy, vừa ngon vừa sạch sẽ ấm cúng.",
+    },
     "banh_mi": {
         "name": "Bánh Mì", "price": 20_000, "rarity": "green",
         "image": "img/banh_mi.jpg", "emoji": "🥖",
         "desc": "Nhanh gọn, rẻ, no lâu. Huyền thoại đường phố!",
     },
+    "banh_bao": {
+        "name": "Bánh Bao", "price": 25_000, "rarity": "green",
+        "image": "img/banh_bao.jpg", "emoji": "🥟",
+        "desc": "Nóng hổi vừa thổi vừa ăn, vỏ mềm xốp nhân thịt trứng cút thơm lừng.",
+    },
+    "chao_long": {
+        "name": "Cháo Lòng", "price": 30_000, "rarity": "blue",
+        "image": "img/chao_long.jpg", "emoji": "🥣",
+        "desc": "Cháo sánh mịn, lòng dồi giòn sần sật, thêm chút tiêu ớt ấm bụng.",
+    },
     "bun_cha": {
         "name": "Bún Chả", "price": 35_000, "rarity": "blue",
         "image": "img/bun_cha.jpg", "emoji": "🥢",
         "desc": "Chả nướng thơm lừng, nước chấm chua ngọt chuẩn vị Hà Nội.",
+    },
+    "pho_cuon": {
+        "name": "Phở Cuốn", "price": 35_000, "rarity": "purple",
+        "image": "img/pho_cuon.webp", "emoji": "🌯",
+        "desc": "Bánh phở mềm cuộn thịt bò xào rau thơm, chấm nước mắm tỏi ớt chua ngọt.",
     },
     "bun_bo": {
         "name": "Bún Bò", "price": 40_000, "rarity": "purple",
@@ -67,18 +93,41 @@ POOLS = {
     "normal": {
         "name": "Vòng Quay Ẩm Thực",
         "subtitle": "Không biết ăn gì? Để số phận quyết định!",
-        "items": ["banh_mi", "bun_cha", "bun_bo", "com_tam", "mystery_box"],
+        "items": [
+            "nhin",
+            "tu_nau_com",
+            "banh_mi",
+            "banh_bao",
+            "chao_long",
+            "bun_cha",
+            "pho_cuon",
+            "bun_bo",
+            "com_tam",
+            "mystery_box",
+        ],
         "rarity_weights": None,
     },
     "mystery": {
         "name": "Hộp Quà Bí Ẩn",
         "subtitle": "Tỉ lệ theo phẩm chất – có cơ hội nhận LẨU Thần Thoại!",
-        "items": ["banh_mi", "bun_cha", "bun_bo", "com_tam", "lau"],
+        "items": [
+            "nhin",
+            "tu_nau_com",
+            "banh_mi",
+            "banh_bao",
+            "chao_long",
+            "bun_cha",
+            "pho_cuon",
+            "bun_bo",
+            "com_tam",
+            "lau",
+        ],
         "rarity_weights": {
-            "green": 40,
-            "blue": 28,
+            "gray": 10,
+            "green": 30,
+            "blue": 26,
             "purple": 18,
-            "red": 10,
+            "red": 12,
             "gold": 4,
         },
     },
