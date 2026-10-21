@@ -34,10 +34,10 @@ ITEMS = {
         "image": "img/bun_cha.jpg", "emoji": "🥢",
         "desc": "Chả nướng thơm lừng, nước chấm chua ngọt chuẩn vị Hà Nội.",
     },
-    "pho": {
-        "name": "Phở", "price": 40_000, "rarity": "purple",
-        "image": "img/pho.jpg", "emoji": "🍜",
-        "desc": "Nước dùng trong veo, bánh phở mềm, quốc hồn quốc tuý.",
+    "bun_bo": {
+        "name": "Bún Bò", "price": 40_000, "rarity": "purple",
+        "image": "img/bun_bo.jpg", "emoji": "🍜",
+        "desc": "Nước dùng cay nồng thơm mùi sả ruốc, thịt bò đầy đặn chuẩn vị Huế.",
     },
     "com_tam": {
         "name": "Cơm Tấm", "price": 45_000, "rarity": "red",
@@ -67,13 +67,13 @@ POOLS = {
     "normal": {
         "name": "Vòng Quay Ẩm Thực",
         "subtitle": "Không biết ăn gì? Để số phận quyết định!",
-        "items": ["banh_mi", "bun_cha", "pho", "com_tam", "mystery_box"],
+        "items": ["banh_mi", "bun_cha", "bun_bo", "com_tam", "mystery_box"],
         "rarity_weights": None,
     },
     "mystery": {
         "name": "Hộp Quà Bí Ẩn",
         "subtitle": "Tỉ lệ theo phẩm chất – có cơ hội nhận LẨU Thần Thoại!",
-        "items": ["banh_mi", "bun_cha", "pho", "com_tam", "lau"],
+        "items": ["banh_mi", "bun_cha", "bun_bo", "com_tam", "lau"],
         "rarity_weights": {
             "green": 40,
             "blue": 28,

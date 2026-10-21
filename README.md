@@ -37,7 +37,7 @@ static/
 
 ## Tỉ lệ
 
-| Vòng quay | Bánh Mì 🟢 | Bún Chả 🔵 | Phở 🟣 | Cơm Tấm 🔴 | Hộp Quà 🎁 | Lẩu 🟡 |
+| Vòng quay | Bánh Mì 🟢 | Bún Chả 🔵 | Bún Bò 🟣 | Cơm Tấm 🔴 | Hộp Quà 🎁 | Lẩu 🟡 |
 |---|---|---|---|---|---|---|
 | Thường (đều) | 20% | 20% | 20% | 20% | 20% | – |
 | Hộp quà bí ẩn (theo phẩm chất) | 40% | 28% | 18% | 10% | – | 4% |
