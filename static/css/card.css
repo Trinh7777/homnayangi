@@ -1,78 +1,145 @@
-/* ===== THẺ VẬT PHẨM (dùng chung cho dải quay, showcase, kết quả) =====
-   --rc: màu phẩm chất, được gán inline từ dữ liệu Python */
+/* ===== THẺ MÓN ĂN BO TRÒN NGỘ NGHĨNH ===== */
 .card {
   --rc: #fff;
   position: relative;
   flex: 0 0 var(--card-w);
   width: var(--card-w);
   height: var(--card-h);
-  transition: filter .3s, transform .3s;
+  border-radius: var(--radius-md);
+  transition: transform .25s cubic-bezier(0.34, 1.56, 0.64, 1), filter .25s;
+  user-select: none;
 }
+
 .card-inner {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
   background:
-    linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--rc) 40%, transparent) 100%),
-    linear-gradient(160deg, #1d2333, #0f131c);
-  clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--rc) 22%, transparent), transparent 75%),
+    linear-gradient(180deg, #2a1f36, #1b1424);
+  border-radius: var(--radius-md);
+  border: 2px solid color-mix(in srgb, var(--rc) 75%, rgba(255,255,255,0.15));
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   overflow: hidden;
 }
-/* viền màu phẩm chất */
-.card-inner::before {
-  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
-  border: 2px solid color-mix(in srgb, var(--rc) 70%, transparent);
-  clip-path: inherit;
-}
+
+/* Khu vực hiển thị ảnh món ăn */
 .card-img {
-  position: relative; height: 64%;
-  display: grid; place-items: center;
-  background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--rc) 45%, transparent), transparent 70%);
+  position: relative; height: 62%;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--rc) 35%, transparent), rgba(0,0,0,0.4) 80%);
   overflow: hidden;
+  border-bottom: 2px solid color-mix(in srgb, var(--rc) 40%, rgba(255,255,255,0.08));
 }
-.card-img img { width: 100%; height: 100%; object-fit: cover; }
-.card-img::after { /* phủ màu nhẹ phía dưới ảnh */
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, #0f131ccc);
+.card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .3s ease;
 }
-.card-emoji { font-size: calc(var(--card-w) * .45); filter: drop-shadow(0 4px 10px #000a); }
+.card:hover .card-img img {
+  transform: scale(1.06);
+}
+
+.card-emoji {
+  font-size: calc(var(--card-w) * 0.46);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  animation: emoji-float 2.5s infinite ease-in-out;
+}
+@keyframes emoji-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Ngôi sao phẩm chất */
 .card-stars {
-  position: absolute; top: 6px; right: 8px; z-index: 2;
-  font-size: 11px; color: var(--rc); letter-spacing: -1px;
+  position: absolute; top: 6px; right: 8px; z-index: 3;
+  font-size: 11px; color: var(--rc);
+  background: rgba(18, 12, 24, 0.7);
+  padding: 1px 6px; border-radius: var(--radius-pill);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   text-shadow: 0 0 6px var(--rc);
 }
-.card-info { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; padding: 0 6px 6px; z-index: 2; }
-.card-name { font-weight: 700; font-size: calc(var(--card-w) * .11); text-align: center; line-height: 1.15; }
+
+/* Thông tin món ăn & Giá tiền */
+.card-info {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 3px;
+  padding: 4px 8px 6px; z-index: 2;
+}
+.card-name {
+  font-weight: 800; font-size: calc(var(--card-w) * 0.115);
+  text-align: center; line-height: 1.15; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 95%;
+}
 .card-price {
-  font-weight: 700; font-size: calc(var(--card-w) * .1);
-  color: var(--rc); text-shadow: 0 0 8px color-mix(in srgb, var(--rc) 60%, transparent);
+  font-weight: 800; font-size: calc(var(--card-w) * 0.095);
+  color: var(--rc);
+  background: rgba(255, 255, 255, 0.07);
+  padding: 1px 10px; border-radius: var(--radius-pill);
+  border: 1px solid color-mix(in srgb, var(--rc) 45%, transparent);
 }
+
+/* Vạch màu phẩm chất dưới đáy */
 .card-bar {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 5px; z-index: 2;
-  background: var(--rc); box-shadow: 0 0 14px 2px var(--rc);
+  position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+  background: var(--rc);
+  box-shadow: 0 -1px 8px var(--rc);
 }
+
+/* Ánh sáng chạy qua thẻ */
 .card-shine {
   position: absolute; inset: 0; z-index: 4; pointer-events: none;
-  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%);
-  transform: translateX(-120%);
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.3) 50%, transparent 65%);
+  transform: translateX(-130%);
 }
-
-/* Phẩm chất cao: ánh sáng chạy qua thẻ */
 .card[data-tier="4"] .card-shine,
-.card[data-tier="5"] .card-shine { animation: card-shine 2.4s infinite; }
-@keyframes card-shine { 0%, 50% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
-
-/* Thẻ trúng thưởng trên dải quay */
-.card.win {
-  filter: drop-shadow(0 0 14px var(--rc)) drop-shadow(0 0 30px var(--rc));
-  transform: scale(1.08);
-  z-index: 2;
+.card[data-tier="5"] .card-shine {
+  animation: card-shine 2.5s infinite;
 }
-.card.win .card-shine { animation: card-shine 1.2s infinite; }
+@keyframes card-shine {
+  0%, 55% { transform: translateX(-130%); }
+  100% { transform: translateX(130%); }
+}
 
-/* Thẻ nhỏ trong showcase */
-.card.mini { --card-w: 108px; --card-h: 142px; }
-.showcase-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.showcase-rate { font-size: 13px; font-weight: 700; color: var(--rc); }
+/* Thẻ trúng thưởng */
+.card.win {
+  filter: drop-shadow(0 0 16px var(--rc)) drop-shadow(0 0 35px var(--rc));
+  transform: scale(1.08) translateY(-4px);
+  z-index: 10;
+}
+.card.win .card-inner {
+  border-width: 3px;
+  border-color: #fff;
+}
+.card.win .card-shine {
+  animation: card-shine 1.2s infinite;
+}
 
-/* Thẻ lớn trong kết quả */
-.card.big { --card-w: 230px; --card-h: 300px; --cut: 18px; }
+/* Thẻ nhỏ trong danh sách món */
+.card.mini {
+  --card-w: 110px;
+  --card-h: 150px;
+}
+.showcase-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  transition: transform .2s ease;
+}
+.showcase-item:hover {
+  transform: translateY(-4px);
+}
+.showcase-rate {
+  font-family: "Baloo 2", cursive;
+  font-size: 13px; font-weight: 700; color: var(--rc);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 10px; border-radius: var(--radius-pill);
+}
+
+/* Thẻ lớn khi trúng thưởng */
+.card.big {
+  --card-w: 240px;
+  --card-h: 315px;
+  border-radius: var(--radius-lg);
+}
+.card.big .card-inner {
+  border-radius: var(--radius-lg);
+}

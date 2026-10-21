@@ -1,52 +1,107 @@
-/* ===== DẢI QUAY NGANG ===== */
-.reel-wrap { position: relative; }
+/* ===== DẢI QUAY ẨM THỰC TRƯỢT NGANG ===== */
+.reel-wrap {
+  position: relative;
+  margin: 10px 0;
+}
+
 .reel-frame {
   position: relative;
-  padding: 26px 0;
+  padding: 22px 0;
   background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 10px, transparent 10px 20px),
-    linear-gradient(180deg, #0c1018, #121826 50%, #0c1018);
-  border-top: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
-  border-bottom: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+    radial-gradient(ellipse at 50% 50%, rgba(255, 107, 53, 0.08), transparent 70%),
+    linear-gradient(180deg, #251b30 0%, #191222 50%, #150e1c 100%);
+  border-radius: var(--radius-lg);
+  border: 2px solid rgba(255, 188, 46, 0.35);
   box-shadow:
-    0 0 40px color-mix(in srgb, var(--accent) 18%, transparent),
-    inset 0 0 60px #000c;
-  transition: border-color .5s, box-shadow .5s;
+    0 12px 35px rgba(0, 0, 0, 0.4),
+    0 0 25px var(--accent-glow),
+    inset 0 2px 10px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: border-color .4s, box-shadow .4s;
 }
-body[data-mode="mystery"] .reel-frame { animation: frame-glow 1.6s infinite alternate; }
-@keyframes frame-glow { to { box-shadow: 0 0 70px color-mix(in srgb, var(--accent) 45%, transparent), inset 0 0 60px #000c; } }
 
-/* Góc khung kiểu HUD */
-.corner { position: absolute; width: 22px; height: 22px; border: 3px solid var(--accent); z-index: 5; }
-.corner.tl { top: -2px; left: 0; border-right: 0; border-bottom: 0; }
-.corner.tr { top: -2px; right: 0; border-left: 0; border-bottom: 0; }
-.corner.bl { bottom: -2px; left: 0; border-right: 0; border-top: 0; }
-.corner.br { bottom: -2px; right: 0; border-left: 0; border-top: 0; }
+body[data-mode="mystery"] .reel-frame {
+  border-color: rgba(255, 214, 102, 0.7);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(255, 183, 3, 0.4),
+    inset 0 0 20px rgba(255, 214, 102, 0.15);
+}
 
-.reel-viewport { position: relative; overflow: hidden; height: calc(var(--card-h) + 24px); display: flex; align-items: center; }
+.reel-viewport {
+  position: relative;
+  overflow: hidden;
+  height: calc(var(--card-h) + 26px);
+  display: flex;
+  align-items: center;
+}
+
 .reel-track {
-  display: flex; gap: var(--card-gap);
+  display: flex;
+  gap: var(--card-gap);
   padding: 0 var(--card-gap);
   will-change: transform;
 }
 
-.reel-fade { position: absolute; top: 0; bottom: 0; width: 18%; z-index: 3; pointer-events: none; }
-.reel-fade.left { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
-.reel-fade.right { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
-
-/* Kim chỉ ở giữa */
-.reel-pointer {
-  position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; z-index: 4; pointer-events: none;
+/* Hiệu ứng mờ dần 2 bên dải quay */
+.reel-fade {
+  position: absolute; top: 0; bottom: 0; width: 16%;
+  z-index: 5; pointer-events: none;
 }
+.reel-fade.left {
+  left: 0;
+  background: linear-gradient(90deg, #191222, transparent);
+}
+.reel-fade.right {
+  right: 0;
+  background: linear-gradient(-90deg, #191222, transparent);
+}
+
+/* KIM CHỈ VỊ TRÍ TRÚNG THƯỞNG DỄ THƯƠNG */
+.reel-pointer {
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  z-index: 8; pointer-events: none;
+}
+
+.pointer-badge {
+  position: absolute; top: -14px;
+  background: linear-gradient(135deg, #ffd166, #ff9e42);
+  color: #3b1800;
+  font-family: "Baloo 2", cursive;
+  font-size: 11px; font-weight: 800;
+  padding: 2px 12px; border-radius: var(--radius-pill);
+  box-shadow: 0 4px 10px rgba(255, 158, 66, 0.5);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  animation: badge-pulse 1.8s infinite ease-in-out;
+}
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
 .reel-pointer .line {
   flex: 1; width: 3px;
-  background: linear-gradient(180deg, var(--accent-2), var(--accent));
-  box-shadow: 0 0 10px var(--accent), 0 0 24px var(--accent);
+  background: linear-gradient(180deg, #ffd166, #ff6b35 50%, #ffd166);
+  box-shadow: 0 0 12px #ff9e42, 0 0 25px rgba(255, 107, 53, 0.8);
+  border-radius: 999px;
 }
-.reel-pointer .arrow { width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; filter: drop-shadow(0 0 6px var(--accent)); }
-.reel-pointer .arrow.top { border-top: 18px solid var(--accent); margin-top: -2px; }
-.reel-pointer .arrow.bottom { border-bottom: 18px solid var(--accent); margin-bottom: -2px; }
 
-.reel-frame.spinning .reel-pointer .line { animation: pointer-blink .15s infinite alternate; }
-@keyframes pointer-blink { to { opacity: .55; } }
+.pointer-arrow {
+  color: #ffd166;
+  font-size: 16px;
+  line-height: 1;
+  filter: drop-shadow(0 0 8px #ff9e42);
+}
+.pointer-arrow.top { margin-top: 6px; }
+.pointer-arrow.bottom { margin-bottom: 4px; }
+
+/* Khi dải đang quay */
+.reel-frame.spinning .reel-pointer .line {
+  animation: pointer-glow .18s infinite alternate;
+}
+@keyframes pointer-glow {
+  to { opacity: 0.6; filter: drop-shadow(0 0 15px #ffd166); }
+}

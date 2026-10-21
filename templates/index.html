@@ -6,7 +6,7 @@
   <title>Hôm Nay Ăn Gì? – Vòng Quay Ẩm Thực</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/reel.css') }}">
@@ -19,7 +19,7 @@
 
   <main class="stage" id="stage">
     <section class="banner">
-      <div class="banner-tag" id="mode-tag">GACHA ẨM THỰC</div>
+      <div class="banner-tag" id="mode-tag">✨ GACHA ẨM THỰC ✨</div>
       <h1 class="mode-title" id="mode-title">Vòng Quay Ẩm Thực</h1>
       <p class="mode-sub" id="mode-sub"></p>
     </section>
@@ -28,23 +28,23 @@
 
     <section class="controls">
       <button id="btn-spin" class="btn-main">
-        <span class="btn-main-text">QUAY NGAY</span>
-        <span class="btn-main-hint">Phím Space</span>
+        <span class="btn-main-text">QUAY NGAY 🎲</span>
+        <span class="btn-main-hint">Bấm hoặc gõ Space</span>
       </button>
       <button id="btn-open-box" class="btn-main btn-mystery hidden">
         <span class="btn-main-text">🎁 MỞ HỘP QUÀ <span class="box-count" id="box-count">0</span></span>
-        <span class="btn-main-hint">Có cơ hội nhận Lẩu</span>
+        <span class="btn-main-hint">Có cơ hội nhận Lẩu Thần Thoại</span>
       </button>
-      <button id="btn-back" class="btn-ghost hidden">← Về vòng quay thường</button>
+      <button id="btn-back" class="btn-ghost hidden">← Quay lại vòng thường</button>
     </section>
 
     <div class="panels">
       <section class="panel">
-        <h3 class="panel-title">Phần thưởng</h3>
+        <h3 class="panel-title">🍱 Danh sách món ăn</h3>
         <div class="showcase" id="showcase"></div>
       </section>
       <section class="panel">
-        <h3 class="panel-title">Lịch sử <button class="link-btn" id="btn-clear-history">Xoá</button></h3>
+        <h3 class="panel-title">📜 Lịch sử quay <button class="link-btn" id="btn-clear-history">Xoá</button></h3>
         <ul class="history" id="history"></ul>
       </section>
     </div>

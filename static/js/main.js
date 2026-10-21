@@ -191,28 +191,28 @@ function showResult(id) {
 
   el.resultModal.style.setProperty("--rc", rarity.color);
   el.resultModal.dataset.tier = rarity.tier;
-  el.resultLabel.textContent = rarity.tier >= 5 ? "★ JACKPOT ★" : "BẠN NHẬN ĐƯỢC";
+  el.resultLabel.textContent = rarity.tier >= 5 ? "🎉 JACKPOT THẦN THOẠI 🎉" : "✨ MLEM MLEM! BẠN SẼ ĂN: ✨";
   el.resultSlot.replaceChildren(buildCard(id, "big"));
   el.resultRarity.textContent = rarity.stars
     ? `${"★".repeat(rarity.stars)}  ${rarity.name.toUpperCase()}`
-    : `??? ${rarity.name.toUpperCase()} ???`;
+    : `✨ ${rarity.name.toUpperCase()} ✨`;
   el.resultName.textContent = item.name;
   el.resultPrice.textContent = isBox ? "Giá: ???" : item.price_text;
   el.resultDesc.textContent = item.desc;
 
   const actions = isBox
     ? [
-        ["🎁 MỞ HỘP NGAY", "primary", () => { closeResult(); doSpin("mystery"); }],
-        ["Để sau", "secondary", closeResult],
+        ["🎁 MỞ HỘP NGAY THÔI!", "primary", () => { closeResult(); doSpin("mystery"); }],
+        ["Để lát nữa", "secondary", closeResult],
       ]
     : [
-        ["CHỐT MÓN NÀY!", "primary", () => { closeResult(); if (state.pending <= 0) setMode("normal"); }],
+        ["CHỐT MÓN NÀY! 😋", "primary", () => { closeResult(); if (state.pending <= 0) setMode("normal"); }],
         inCooldown
           ? ["⏳ ĐỢI HỒI LƯỢT", "secondary", () => {
               closeResult();
               toast(`Lượt quay tiếp theo sau: ${formatCountdown(cooldownState.remainingSeconds)}`);
             }]
-          : ["QUAY LẠI", "secondary", () => {
+          : ["QUAY LẠI 🎲", "secondary", () => {
               closeResult();
               doSpin(state.mode === "mystery" && state.pending > 0 ? "mystery" : "normal");
             }],
